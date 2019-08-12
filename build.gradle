@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+    id "io.qameta.allure" version "2.7.0"
+}
+
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
+javadoc.options.encoding = 'UTF-8'
+
+group 'web_automation'
+version '1.0-SHITHAPPENS'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+allure {
+    version = '2.4.1'
+    autoconfigure = true
+    aspectjweaver = true
+    allureJavaVersion = '2.7.0'
+}
+
+dependencies {
+    // https://mvnrepository.com/artifact/junit/junit
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    // https://mvnrepository.com/artifact/mysql/mysql-connector-java
+    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.23'
+    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '2.53.1'
+}
+
+task ("run", type: Test) {
+    filter {
+        includeTestsMatching "DatabaseAssertion.*"
+        //includeTestsMatching "checkout_tests.DatabaseAssertion.rangeNoCall"
+    }
+}
