@@ -6,7 +6,7 @@ import java.util.List;
 public class ParseString {
 
     public static void main(String[] args) {
-        String input = "123 -98 -4 12 64 17 999 1024 -444";
+        String input = "123 -98 -4 12 64 17 999 1024 -444 537 5";
         List<Integer[]> list = parse(input);
         System.out.println("Массив четных чисел по возрастанию:");
         for(Integer in: list.get(0)) {
@@ -21,12 +21,8 @@ public class ParseString {
 
     private static List<Integer[]> parse(String input){
         String[] array = input.split(" ");
-        int[] inputIntArray = new int[array.length];
         int evenCount = 0;
-        for (int i = 0; i < inputIntArray.length; i++) {
-            inputIntArray[i] = Integer.parseInt(array[i]);
-            if (inputIntArray[i] % 2 == 0) evenCount++;
-        }
+        for(String s: array) if (Integer.parseInt(s) % 2 == 0) evenCount++;
         Integer[] even = new Integer[evenCount];
         Integer[] odd = new Integer[array.length - evenCount];
         int eCount = 0;
